@@ -11,11 +11,13 @@
 			<a href="" title="">{{cate.name}}</a>
 		</h5>
 		<div class="text-center">
+
 			<a routerLink="cate-edit/{{cate.id}}" class="btn btn-sm btn-info">Sửa</a>
 			&nbsp;
 			<button type="button" 
 				(click)="removeCategory(cate)"
 				class="btn btn-sm btn-danger">Xóa</button>
+			<a routerLink="{{cate.id}}/products" class="btn btn-sm btn-info" style="margin-left: 10px;">Product</a>
 		</div>
 	</div>
 </div>

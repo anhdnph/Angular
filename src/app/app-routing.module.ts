@@ -8,7 +8,13 @@ import {DetailCateComponent}
 import {CateAddComponent} 
 		from './secreens/cate-add/cate-add.component';
 import {CateEditComponent} 
-		from './secreens/cate-edit/cate-edit.component';		
+		from './secreens/cate-edit/cate-edit.component';
+import {ProductComponent} 
+		from './secreens/products/product/product.component';
+import {EditProductComponent} 
+		from './secreens/products/edit-product/edit-product.component';
+import {AddProductComponent} 
+		from './secreens/products/add-product/add-product.component';		
 
 const routes: Routes = [
 	{
@@ -23,10 +29,23 @@ const routes: Routes = [
 		path: "cate-edit/:id",
 		component: CateEditComponent
 	},
+
 	{
 		path: "detail/:id",
 		component: DetailCateComponent
-	}
+	},
+	{
+    path: ':category-id/products',
+    component: ProductComponent
+  	},
+  	{
+    path: 'category-id/products/:id/edit',
+    component: EditProductComponent
+  	},
+  	{
+    path: ':category-id/products/add',
+    component: AddProductComponent
+  	}
 ];
 
 @NgModule({
