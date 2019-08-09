@@ -6,12 +6,16 @@ import { HttpClient,
   providedIn: 'root'
 })
 export class CategoryService {
-  apiUrl = "http://5d3194de4901b4001401a0e8.mockapi.io/categories/";
+  apiUrl = "http://5d3194de4901b4001401a0e8.mockapi.io/categories";
   constructor(private http: HttpClient) { }
 
   public getListCategory(){
     return this.http.get<any[]>(this.apiUrl);
   }
+  public getCategoryById(cateId){
+    return this.http.get<any>(`${this.apiUrl}/${cateId}`);
+  }
+
 
   public removeCategory(cateId){
     let removeUrl = `${this.apiUrl}/${cateId}`;
@@ -22,7 +26,8 @@ export class CategoryService {
     
     return this.http.post<any>(this.apiUrl, data);
   }
-  public editCategory(cate){
-    return this.http.put<any>(this.apiUrl+cate.id,cate);
+    public editCategory(cateId, data){
+    let url = `${this.apiUrl}/${cateId}`;
+    return this.http.put<any>(url, data);
   }
 }
