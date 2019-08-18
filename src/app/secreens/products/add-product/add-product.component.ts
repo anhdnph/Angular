@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
 import {CategoryService} from '../../../services/category.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../../services/product.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-product',
@@ -11,8 +11,8 @@ import {ProductService} from '../../../services/product.service';
 })
 export class AddProductComponent implements OnInit {
   constructor(private productService: ProductService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
   categoryId: string = this.route.snapshot.paramMap.get('category-id') ;
   url = `${this.categoryId}/products` ;
   productForm = {
@@ -35,9 +35,9 @@ export class AddProductComponent implements OnInit {
       status: this.productForm.status.value
     } ;
     this.productService.createProduct(this.url, data)
-      .subscribe(data => {
-        this.router.navigate([this.url]);
-      });
+    .subscribe(data => {
+      this.router.navigate([this.url]);
+    });
   }
 
 }

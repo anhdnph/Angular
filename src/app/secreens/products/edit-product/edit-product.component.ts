@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ProductService} from '../../../services/product.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,22 +12,31 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class EditProductComponent implements OnInit {
 
   constructor(private productService: ProductService,
-              private http: HttpClient,
-              private router: Router,
-              private route: ActivatedRoute) { }
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute) { }
   categoryId: string = this.route.snapshot.paramMap.get('category-id') ;
   productId: string = this.route.snapshot.paramMap.get('id') ;
   url = `${this.categoryId}/products/${this.productId}`
   productForm = new FormGroup({
-    id: new FormControl(this.productId),
-    categoryId: new FormControl(this.categoryId),
-    name: new FormControl(''),
-    image: new FormControl(''),
-    price: new FormControl(''),
+    name: new FormControl('',[
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20)
+      ]),
+    image: new FormControl('',[
+      Validators.required
+      ]),
+    price: new FormControl('',[
+      Validators.required
+      ]),
     detail: new FormControl(''),
     amount: new FormControl(''),
     status: new FormControl('')
-  }) ;
+  });
+  get name() {return this.productForm.get('name')}
+  get image() {return this.productForm.get('image')}
+  get price() {return this.productForm.get('price')}
   ngOnInit() {
     this.getProduct() ;
   }
@@ -46,8 +55,10 @@ export class EditProductComponent implements OnInit {
     }) ;
   }
   updateProduct() {
+    if(this.productForm.valid){
     this.productService.updateProduct(this.url, this.productForm.value).subscribe(data => {
       this.router.navigate([`${this.categoryId}/products`]) ;
     }) ;
   }
+}
 }

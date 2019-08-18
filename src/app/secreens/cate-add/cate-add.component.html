@@ -6,8 +6,8 @@
 		<div class="form-group">
 			<label for="">Tên danh mục</label>
 			<input type="text" 
-					[formControl]="category.name"
-					class="form-control">
+			[formControl]="category.name"
+			class="form-control">
 		</div>
 		<div class="row">
 			<div class="col-12">
@@ -18,13 +18,13 @@
 		<div class="form-group">
 			<label for="">Ảnh danh mục</label>
 			<input type="text" 
-					[formControl]="category.image" 
-					class="form-control">
+			[formControl]="category.image" 
+			class="form-control">
 		</div>
 		<div class="text-center">
 			<button type="button" 
-					(click)="saveCategory()"
-					class="btn btn-sm btn-success">Lưu</button>
+			(click)="saveCategory()"
+			class="btn btn-sm btn-success">Lưu</button>
 			<a routerLink="/" class="btn btn-sm btn-danger">Hủy</a>
 		</div>
 	</div>

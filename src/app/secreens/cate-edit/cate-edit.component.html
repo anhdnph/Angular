@@ -6,7 +6,7 @@
 		<form [formGroup]="cateForm">
 		
 			<div class="form-group">
-				<label for="">Tên danh mục<span class="text-danger"></span></label>
+				<label for="">Tên danh mục <span class="text-danger">*</span></label>
 				<input type="text" 
 						formControlName="name"
 						class="form-control">
@@ -14,13 +14,13 @@
 				    class="alert alert-danger">
 
 				  <div *ngIf="name.errors.required">
-				    vui long nhap
+				    Vui lòng điền tên danh mục
 				  </div>
 				  <div *ngIf="name.errors.minlength">
-				    Nhap du 4 ky tu
+				    Tên danh mục không đc ít hơn 4 ký tự
 				  </div>
 				  <div *ngIf="name.errors.maxlength">
-				    Nhap khong vuot qua 20 ky tu
+				    Tên danh mục không vượt quá 20 ký tự
 				  </div>
 				</div>
 			</div>
@@ -31,33 +31,27 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="">Ảnh danh mục<span class="text-danger"></span></label>
+				<label for="">Ảnh danh mục <span class="text-danger">*</span></label>
 				<input type="text" 
-						formControlName="image"
+						formControlName="image" 
 						class="form-control">
 				<div *ngIf="image.invalid && (image.dirty || image.touched)"
 				    class="alert alert-danger">
 
 				  <div *ngIf="image.errors.required">
-				    vui long nhap
-				  </div>
-
-				  <div *ngIf="image.errors.forbiddenName">
-				    Nhap duong dan anh
+				    Vui lòng nhập đường dẫn ảnh
 				  </div>
 				</div>
-				<input type="text" 
-						formControlName="image" 
-						class="form-control">
 			</div>
 			<div class="text-center">
-				<button
-				[disabled]="cateForm.invalid"
-				 type="button" 
+				<button [disabled]="cateForm.invalid" 
+						type="button" 
 						(click)="saveCategory()"
 						class="btn btn-sm btn-success">Lưu</button>
 				<a routerLink="/" class="btn btn-sm btn-danger">Hủy</a>
 			</div>
 		</form>
 	</div>
+</div>
+<div>
 </div>

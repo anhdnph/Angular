@@ -12,10 +12,7 @@
       <a href="" title="">{{product.name}}</a>
     </h5>
     <h5>
-      <a href="" title="">{{product.price}}</a>
-    </h5>
-    <h5>
-      <a href="" title="">{{product.price}}</a>
+      <a href="" title="">${{product.price}}</a>
     </h5>
     <h5>
       <a href="" title="">{{product.detail}}</a>
@@ -31,8 +28,8 @@
       <a routerLink="{{url}}/{{product.id}}/edit" class="btn btn-sm btn-info">Sửa</a>
       &nbsp;
       <button type="button" 
-        (click)="removeProduct(product)"
-        class="btn btn-sm btn-danger">Xóa</button>
+      (click)="removeProduct(product)"
+      class="btn btn-sm btn-danger">Xóa</button>
     </div>
   </div>
 </div>

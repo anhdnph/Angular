@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 export class CateAddComponent implements OnInit {
 
   constructor(private cateService: CategoryService,
-  				private router: Router) { }
+    private router: Router) { }
   category = {
   	name: new FormControl(''),
   	image: new FormControl('')
@@ -18,19 +18,19 @@ export class CateAddComponent implements OnInit {
   ngOnInit() {
   }
   saveCategory(){
-      let sendData = {
-        name: this.category.name.value,
-        image: this.category.image.value
+    let sendData = {
+      name: this.category.name.value,
+      image: this.category.image.value
+    }
+    console.log(sendData);
+    this.cateService.addCategory(sendData)
+    .subscribe(data => {
+      console.log(data);
+      this.category = {
+        name: new FormControl(''),
+        image: new FormControl('')
       }
-      console.log(sendData);
-  	this.cateService.addCategory(sendData)
-  					.subscribe(data => {
-  						console.log(data);
-  						this.category = {
-  							name: new FormControl(''),
-  							image: new FormControl('')
-  						}
-  						this.router.navigate(['/']);
-  					});
+      this.router.navigate(['/']);
+    });
   }
 }

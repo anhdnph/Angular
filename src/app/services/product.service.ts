@@ -6,8 +6,8 @@ import {CategoryService} from './category.service';
   providedIn: 'root'
 })
 export class ProductService {
-constructor(private http: HttpClient,
-              private categoryService: CategoryService) {  }
+  constructor(private http: HttpClient,
+    private categoryService: CategoryService) {  }
   getProductsList(url: string) {
     return this.http.get<any[]>(`${this.categoryService.apiUrl}/${url}`) ;
   }
