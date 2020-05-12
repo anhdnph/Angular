@@ -12,9 +12,9 @@ export class HomeComponent implements OnInit {
   categories = [];
   ngOnInit() {
     this.cateService.getListCategory()
-            .subscribe(data => {
-              this.categories = data;
-            });
+    .subscribe(data => {
+      this.categories = data;
+    });
   }
   removeCategory(cate){
     let conf = confirm(`Bạn có chắc chắn muốn xóa danh mục ${cate.name} ?`)
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
       this.cateService.removeCategory(cate.id)
       .subscribe(data => {
         this.categories = this.categories
-            .filter(item => item.id != cate.id);
+        .filter(item => item.id != cate.id);
       })
     }
     

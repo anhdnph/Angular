@@ -8,14 +8,16 @@
 			<img [src]="cate.image" class="img-fluid">
 		</div>
 		<h5>
-			<a href="" title="">{{cate.name}}</a>
+			<a routerLink="{{cate.id}}/products" title="">{{cate.name}}</a>
 		</h5>
 		<div class="text-center">
+
 			<a routerLink="cate-edit/{{cate.id}}" class="btn btn-sm btn-info">Sửa</a>
 			&nbsp;
 			<button type="button" 
-				(click)="removeCategory(cate)"
-				class="btn btn-sm btn-danger">Xóa</button>
+			(click)="removeCategory(cate)"
+			class="btn btn-sm btn-danger">Xóa</button>
+
 		</div>
 	</div>
 </div>

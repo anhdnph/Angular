@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-12 cate-unit">
+    <a routerLink="/" class="btn btn-sm btn-info">Home</a>
+    <a style="margin-left: 10px;" routerLink="{{url}}/add" class="btn btn-sm btn-danger">Thêm mới</a>
+  </div>
+
+  <div class="col-4 cate-unit" *ngFor="let product of productList">
+    <div class="text-center">
+      <img [src]="product.image" class="img-fluid">
+    </div>
+    <h5>
+      <a href="" title="">{{product.name}}</a>
+    </h5>
+    <h5>
+      <a href="" title="">${{product.price}}</a>
+    </h5>
+    <h5>
+      <a href="" title="">{{product.detail}}</a>
+    </h5>
+    <h5>
+      <a href="" title="">{{product.amount}}</a>
+    </h5>
+    <h5>
+      <a href="" title="">{{product.status}}</a>
+    </h5>
+    <div class="text-center">
+
+      <a routerLink="{{url}}/{{product.id}}/edit" class="btn btn-sm btn-info">Sửa</a>
+      &nbsp;
+      <button type="button" 
+      (click)="removeProduct(product)"
+      class="btn btn-sm btn-danger">Xóa</button>
+    </div>
+  </div>
+</div>

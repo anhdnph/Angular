@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../services/category.service';
-import { Router,  ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-cate-edit',
@@ -9,10 +11,50 @@ import { Router,  ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class CateEditComponent implements OnInit {
 
-  constructor(private cateService: CategoryService,
-  				private router: Router,
-          private route:ActivatedRoute,) { }
-  category = {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cateService: CategoryService
+    ) { }
+  cateForm = new FormGroup({
+
+    name: new FormControl('',[
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20)
+      ]),
+    image: new FormControl('',[
+
+      Validators.required
+    ])
+  });
+  get name() {return this.cateForm.get('name')}
+  get image() {return this.cateForm.get('image')}
+  cateId: string;
+  ngOnInit() {
+    this.cateId = this.route.snapshot.params.id;
+    this.cateService.getCategoryById(this.cateId)
+    .subscribe(data => {
+      this.cateForm.setValue({
+        name: data.name,
+        image: data.image
+      });
+    });
+  }
+  saveCategory(){
+    if(this.cateForm.valid){
+      this.cateService.editCategory(this.cateId, this.cateForm.value)
+      .subscribe(data => {
+        console.log(data);
+        this.router.navigate(['/']);
+      })
+    }
+    
+  }
+
+}
+
+  /*category = {
   	name: "",
   	image: ""
   }
@@ -21,7 +63,6 @@ export class CateEditComponent implements OnInit {
     this.cateService.getListCategory().subscribe( data =>{
       console.log(data);
       this.category=data.find((item)=>item.id===this.id);
-      // console.log(this.category);
     });
     
   }
@@ -34,5 +75,5 @@ export class CateEditComponent implements OnInit {
       };
       this.router.navigate(['/']);
     })
-  }
-}
+  }*/
+
